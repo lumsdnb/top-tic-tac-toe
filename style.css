@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+.gameboard {
+  padding: 1rem;
+  font-size: 2rem;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+}
+
+.board-item {
+  color: green;
+  flex-basis: 33%;
+  padding: 2rem;
+  width: 1rem;
+  height: 1rem;
+}
