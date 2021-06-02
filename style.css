@@ -44,6 +44,7 @@ h1 {
   background-color: rgb(192, 192, 192);
 }
 
+/*
 .--hidden {
   color: var(--secondary-primary-color);
 }
@@ -52,7 +53,25 @@ h1 {
   color: var(--primary-color);
   background-color: var(--primary-color);
 }
+*/
 
-.selected {
-  border-radius: 2rem;
+.player-select {
+  border-radius: 2rem 0;
+  transition: border-radius linear 60ms;
+}
+.computer-select {
+  border-radius: 0 2rem;
+  transition: border-radius linear 60ms;
+}
+
+.turn-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  user-select: none;
+}
+
+input {
+  padding: 1.5rem;
 }
