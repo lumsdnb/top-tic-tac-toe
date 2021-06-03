@@ -24,7 +24,7 @@ h1 {
 
 .gameboard-grid {
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 8rem;
   display: grid;
   grid-template-columns: repeat(3, 8rem);
   grid-template-rows: repeat(3, 8rem);
@@ -64,6 +64,7 @@ h1 {
 .computer-select {
   border: 0.5rem solid red;
   border-radius: 0 2rem;
+  color: var(--bg-color);
   transition: border-radius linear 60ms;
 }
 
