@@ -28,6 +28,12 @@ let gameBoard = (function() {
         return _gameScore
     }
 
+    function gameOver(){
+        //if board is full, display tie, 
+        //if three in row, display winner
+            //disable input, stop ai
+    }
+
     function getWhoseTurn(){
         
         return _playerTurn
@@ -117,4 +123,4 @@ const dumbAI=opponent("jef")
 
 let intervalId = setInterval(function() {
   dumbAI.playRound()
-}, 1000);
+}, 2000);
