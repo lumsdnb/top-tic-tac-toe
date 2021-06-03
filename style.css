@@ -56,10 +56,13 @@ h1 {
 */
 
 .player-select {
+  border: 0.5rem solid green;
+  color: var(--bg-color);
   border-radius: 2rem 0;
   transition: border-radius linear 60ms;
 }
 .computer-select {
+  border: 0.5rem solid red;
   border-radius: 0 2rem;
   transition: border-radius linear 60ms;
 }

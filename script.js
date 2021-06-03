@@ -33,8 +33,8 @@ let gameBoard = (function() {
         return _playerTurn
     }
 
-    function _updateArray(i){
-        _gameScore[i]="X"
+    function _updateArray(i,c){
+        _gameScore[i]=c
     }
 
     function _updateDisplay(){
@@ -54,7 +54,7 @@ let gameBoard = (function() {
                 e.target.innerHTML="X"
                 //get index of array and update in data
                
-                _updateArray(e.target.dataset.index)
+                _updateArray(e.target.dataset.index,"X")
                 
             } else console.log("already selected");
             _playerTurn=false
@@ -62,8 +62,20 @@ let gameBoard = (function() {
         _updateDisplay()
     }
 
-    function computerInput(e){
-        console.log(e.target);
+    function computerInput(i){
+        console.log(i);
+        //get dom element from passed index (1st ([0]) item from nodelist)
+        const el=document.querySelectorAll(`[data-index="${i}"]`)[0];
+        console.log(el);
+        el.classList.add("computer-select")
+        el.innerHTML="Y"
+        //get index of array and update in data
+               
+        _updateArray(i,"y")
+
+        _playerTurn=true
+        console.log("computer finished turn");
+        _updateDisplay()
     }
     
     return {init, getBoard, computerInput, getWhoseTurn};
@@ -91,10 +103,11 @@ const opponent=(name)=>{
         if (!canPlay) {
             console.log("computer can play");
             console.log(boardState);
-            const freeField=boardState.findIndex(empty=>empty===-1)
             //find free field and click it
-            //gameBoard.computerInput(id)
-            console.log(freeField);
+            const freeField=boardState.findIndex(empty=>empty===-1)
+            if(freeField!=-1){
+                gameBoard.computerInput(freeField)
+            }
         }
     }
     return{playRound,sayHi}
@@ -104,4 +117,4 @@ const dumbAI=opponent("jef")
 
 let intervalId = setInterval(function() {
   dumbAI.playRound()
-}, 5000);
+}, 1000);
