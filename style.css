@@ -6,6 +6,7 @@ html {
   --primary-color: grey;
   --secondary-primary-color: lightgrey;
   --bg-color: black;
+  --btn-rad: 0.7rem;
 }
 
 body {
@@ -79,13 +80,37 @@ h1 {
 input {
   font-size: 1.2rem;
   padding: 1.5rem;
+  margin: 0;
+}
+.form-submit {
+  border-radius: 0 var(--btn-rad) var(--btn-rad) 0;
+}
+
+.form-name {
+  border-radius: var(--btn-rad) 0 0 var(--btn-rad);
 }
 
 button {
   font-size: 1.2rem;
   padding: 1.5rem;
+  border-radius: var(--btn-rad);
+}
+
+button:hover {
+  background-color: var(--bg-color);
+  border: 0.1rem var(--primary-color);
+  color: var(--secondary-primary-color);
+  transition: all 70ms ease-out;
 }
 
 .reset-btn {
+  position: absolute;
+  border-radius: var(--btn-rad);
   display: none;
+  opacity: 0;
+}
+.--fade-in {
+  display: inline-block;
+  transition: all 100ms ease-in-out;
+  opacity: 1;
 }
