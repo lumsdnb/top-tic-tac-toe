@@ -86,7 +86,11 @@ input {
   border-radius: 0 var(--btn-rad) var(--btn-rad) 0;
 }
 
-.form-name {
+#form-group {
+  position: absolute;
+}
+
+#form-name {
   border-radius: var(--btn-rad) 0 0 var(--btn-rad);
 }
 
@@ -113,4 +117,8 @@ button:hover {
   display: inline-block;
   transition: all 100ms ease-in-out;
   opacity: 1;
+}
+
+label {
+  font-size: 2rem;
 }
