@@ -9,18 +9,17 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
-    <header><h1 class="top-title">welcome, player 1</h1></header>
+    <header><h1 class="top-title">welcome to the game</h1></header>
     <main class="container">
         <div class="gameboard-grid"></div>
-        <h2 class="turn-indicator">your turn</h2>
+        <h2 class="turn-indicator"></h2>
     </main>
-    <form>
+    <form id="form-group">
         <label for="name">
             your name
-            <input class="form-name" name="name" type="text" required>
+            <input id="form-name" name="name" type="text" required>
         </label>
-        <input class="form-submit" type="submit" value="start" onclick="startGame()">
-        
+        <input id="form-submit" type="submit" value="start"">
     </form>
     <button class="reset-btn" type="reset" onclick="resetGame()">restart game</button>
 </body>
