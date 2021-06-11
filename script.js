@@ -1,10 +1,24 @@
-function startGame(e) {
-  console.log(e);
+//should probably refactor this
+document
+  .getElementById('form-submit')
+  .addEventListener('click', function (event) {
+    event.preventDefault();
+    const playerName = document.getElementById('form-name').value;
+    console.log(playerName);
+    if (playerName !== '') {
+      startGame(playerName);
+    }
+  });
+
+function startGame(name) {
+  gameBoard.init(name);
+  document.getElementById('form-group').style.display = 'none';
 }
 
 function resetGame(e) {
   console.log(e);
   gameBoard.reset();
+  document.getElementById('form-group').style.display = 'inline-block';
 }
 
 let gameBoard = (function () {
@@ -19,7 +33,8 @@ let gameBoard = (function () {
 
   const getField = (num) => _gameScore[num];
 
-  function _initBoard() {
+  function _initBoard(name) {
+    topEl.innerHTML = `welcome, ${name} `;
     boardEl.innerHTML = '';
 
     gameOver = false;
@@ -39,8 +54,8 @@ let gameBoard = (function () {
     _playerTurn = true;
     resetBtn.classList.remove('--fade-in');
     _initBoard();
-    _updateDisplay();
-    topEl.innerHTML = 'welcome, player 1';
+    turnEl.innerHTML = '';
+    topEl.innerHTML = 'welcome to the game';
     intervalId = setInterval(function () {
       if (!gameBoard.checkForWin()) {
         dumbAI.playRound();
@@ -72,8 +87,8 @@ let gameBoard = (function () {
     clearInterval(intervalId);
   };
 
-  function init() {
-    _initBoard();
+  function init(name) {
+    _initBoard(name);
   }
 
   const checkForWin = () => {
@@ -179,8 +194,6 @@ let gameBoard = (function () {
 
   return { init, getBoard, computerInput, getWhoseTurn, checkForWin, reset };
 })();
-
-gameBoard.init();
 
 //---------------- player factories ----------------//
 let playerFactory = (name) => {
