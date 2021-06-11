@@ -24,6 +24,7 @@ function resetGame(e) {
 let gameBoard = (function () {
   'use strict';
   let _gameScore = [-1, -1, -1, -1, -1, -1, -1, -1, -1];
+  let playerName = '';
   let _playerTurn = true;
   let gameOver = false;
   const boardEl = document.querySelector('.gameboard-grid');
@@ -34,6 +35,7 @@ let gameBoard = (function () {
   const getField = (num) => _gameScore[num];
 
   function _initBoard(name) {
+    playerName = name;
     topEl.innerHTML = `welcome, ${name} `;
     boardEl.innerHTML = '';
 
@@ -79,10 +81,17 @@ let gameBoard = (function () {
     turnEl.innerHTML = _playerTurn ? 'your turn' : 'computers turn';
   }
   const endGame = (winner) => {
-    console.warn('a win detected');
-    topEl.innerHTML = 'game over!';
-    turnEl.innerHTML = `${winner} won this round. `;
-    resetBtn.classList.add('--fade-in');
+    if (winner !== 'tie') {
+      console.warn('a win detected');
+      topEl.innerHTML = 'game over!';
+      turnEl.innerHTML = `${winner} won this round. `;
+      resetBtn.classList.add('--fade-in');
+    } else if (winner === 'tie') {
+      console.warn('tie detected');
+      topEl.innerHTML = 'game over!';
+      turnEl.innerHTML = 'tie!';
+      resetBtn.classList.add('--fade-in');
+    }
     gameOver = true;
     clearInterval(intervalId);
   };
@@ -98,7 +107,7 @@ let gameBoard = (function () {
       _checkForDiagonals('X')
     ) {
       console.log('three x');
-      endGame('player 1');
+      endGame(playerName);
     } else if (
       _checkForRows('Y') ||
       _checkForColumns('Y') ||
@@ -106,8 +115,8 @@ let gameBoard = (function () {
     ) {
       console.log('three y');
       endGame('compooter');
-    } else {
-      console.log('no win yet');
+    } else if (!_gameScore.includes(-1)) {
+      endGame('tie');
     }
   };
 
@@ -155,7 +164,6 @@ let gameBoard = (function () {
 
   function _playerInput(e) {
     if (!gameOver) {
-      console.log(e.target);
       //check if player can input anything
       if (_playerTurn) {
         if (
@@ -176,10 +184,8 @@ let gameBoard = (function () {
   }
 
   function computerInput(i) {
-    console.log(i);
     //get dom element from passed index (1st ([0]) item from nodelist)
     const el = document.querySelectorAll(`[data-index="${i}"]`)[0];
-    console.log(el);
     el.classList.add('computer-select');
     el.innerHTML = 'Y';
     //get index of array and update in data
